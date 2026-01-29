@@ -12,8 +12,10 @@ spec:
       labels:
         app: demo-app
     spec:
+      imagePullSecrets:
+        - name: ghcr-pull
       containers:
         - name: demo-app
-          image: localhost:32000/demo-app:INITIAL
+          image: ghcr.io/shyaminda/demo-app:INITIAL
           ports:
             - containerPort: 3000
