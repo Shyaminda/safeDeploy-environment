@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: demo-app
-          image: registry.safe.internal/demo-app:INITIAL
+          image: localhost:32000/demo-app:INITIAL
           ports:
             - containerPort: 3000
