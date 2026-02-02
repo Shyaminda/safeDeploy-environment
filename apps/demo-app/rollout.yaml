@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: demo-app
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: demo-app
@@ -26,4 +26,4 @@ spec:
       canaryService: demo-app-canary
       steps:
         - setWeight: 10
-        - pause: { duration: 60 }
+        - pause: {}
