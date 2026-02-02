@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: demo-app
 spec:
@@ -19,3 +19,11 @@ spec:
           image: ghcr.io/shyaminda/demo-app:INITIAL
           ports:
             - containerPort: 3000
+
+  strategy:
+    canary:
+      stableService: demo-app-stable
+      canaryService: demo-app-canary
+      steps:
+        - setWeight: 10
+        - pause: { duration: 60 }
