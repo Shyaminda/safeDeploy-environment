@@ -19,6 +19,9 @@ spec:
           image: ghcr.io/shyaminda/demo-app:d7ea238
           ports:
             - containerPort: 3000
+          env:
+            - name: SLOW_MODE
+              value: "true"
 
   strategy:
     canary:
