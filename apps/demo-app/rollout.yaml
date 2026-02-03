@@ -25,5 +25,4 @@ spec:
       stableService: demo-app-stable
       canaryService: demo-app-canary
       steps:
-        - setWeight: 10
-        - pause: {}
+        - setWeight: 100
