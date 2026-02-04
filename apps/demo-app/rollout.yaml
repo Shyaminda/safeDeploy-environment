@@ -16,7 +16,7 @@ spec:
         - name: ghcr-pull
       containers:
         - name: demo-app
-          image: ghcr.io/shyaminda/demo-app:28d553e
+          image: ghcr.io/shyaminda/demo-app:794077d
           ports:
             - containerPort: 3000
 
