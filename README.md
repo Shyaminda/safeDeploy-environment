@@ -3,10 +3,15 @@
 GitOps environment repository for deploying `demo-app` to Kubernetes with **Argo CD** and **Argo Rollouts**.
 
 This repo defines:
+
 - An Argo CD `Application` that points to this repository path.
 - A canary rollout strategy for `demo-app`.
 - Stable and canary Kubernetes Services used by Argo Rollouts.
 - A Kustomize entrypoint for applying app manifests.
+
+## 🖼️ Argo CD View
+
+![Argo CD application tree](assets/image.png)
 
 ## 📁 Repository structure
 
@@ -26,16 +31,20 @@ This repo defines:
 ## 🚀 What is deployed
 
 ### 1) Argo CD Application (`apps/argocd/demo-app.yml`)
+
 Creates an Argo CD `Application` named `demo-app` in namespace `argocd`.
 
 Key behavior:
+
 - Pulls manifests from this GitHub repo.
 - Uses `apps/demo-app` as the source path.
 - Deploys to the `default` namespace in the in-cluster Kubernetes API server.
 - Auto-sync is enabled with `prune` and `selfHeal`.
 
 ### 2) Rollout (`apps/demo-app/rollout.yaml`)
+
 Defines an Argo Rollout for `demo-app` with:
+
 - `replicas: 2`
 - Container image from GHCR (`ghcr.io/shyaminda/demo-app:55fccf8`)
 - `ghcr-pull` image pull secret
@@ -44,14 +53,18 @@ Defines an Argo Rollout for `demo-app` with:
   - Pause for manual/automated verification
 
 ### 3) Services (`apps/demo-app/service-stable.yaml`, `apps/demo-app/service-canary.yaml`)
+
 Two services are used by Argo Rollouts:
+
 - `demo-app-stable`
 - `demo-app-canary`
 
 Both expose port `3000` and select pods labeled `app: demo-app`.
 
 ### 4) Kustomize (`apps/demo-app/kustomization.yaml`)
+
 Kustomize resource list includes:
+
 - `rollout.yaml`
 - `service-stable.yaml`
 - `service-canary.yaml`
