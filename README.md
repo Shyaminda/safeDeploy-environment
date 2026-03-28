@@ -1,4 +1,4 @@
-# safeDeploy-environment
+# 🚀 safeDeploy-environment
 
 GitOps environment repository for deploying `demo-app` to Kubernetes with **Argo CD** and **Argo Rollouts**.
 
